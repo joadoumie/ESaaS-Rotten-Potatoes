@@ -16,8 +16,8 @@
 <table class="table table-striped col-md-12" id="movies">
   <thead>
     <tr>
-      <a id="title_header"><th>Movie Title</th></a>
-      <a id="release_date_header"><th>Rating</th></a>
+      <th><%= link_to "Movie Title", movies_path() %></th>
+      <th><%= link_to "Rating", movies_path() %></th>
       <th>Release Date</th>
       <th>More Info</th>
     </tr>
