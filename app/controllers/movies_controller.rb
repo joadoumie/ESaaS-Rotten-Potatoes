@@ -17,13 +17,13 @@ class MoviesController < ApplicationController
     	end
     end
     if params[:sort_movies]
+	@ratings_to_show = params[:boxes_checked]
         @movies = Movie.sort_movies(@ratings_to_show, "Movie")
 	@movie_class= "p-3 mb-2 bg-warning text-dark hilite"
-	@ratings_to_show = params[:boxes_checked]
     elsif params[:sort_release]
+	@ratings_to_show = params[:boxes_checked]
 	@movies = Movie.sort_movies(@ratings_to_show, "Release")
 	@release_class= "p-3 mb-2 bg-warning text-dark hilite"
-	@ratings_to_show = params[:boxes_checked]
     else 
     	@movies = Movie.with_ratings(@ratings_to_show)
     end
