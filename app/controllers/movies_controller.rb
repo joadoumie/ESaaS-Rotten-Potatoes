@@ -27,10 +27,6 @@ class MoviesController < ApplicationController
 	@movies = Movie.sort_movies(@ratings_to_show, "Release")
 	@release_class= "p-3 mb-2 bg-warning text-dark hilite"
 	session[:sorting] = "Release"
-    elsif session[:sorting] == "Movie"
-        @movies = Movie.sort_movies(@ratings_to_show, "Movie")
-    elsif session[:sorting] == "Release"
-	@movies = Movie.sort_movies(@ratings_to_show, "Release")
     else 
     	@movies = Movie.with_ratings(@ratings_to_show)
     end
