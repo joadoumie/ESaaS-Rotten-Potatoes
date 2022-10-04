@@ -14,6 +14,7 @@ class Movie < ActiveRecord::Base
 	return Movie.distinct.pluck(:rating)
     end
 
+
     def self.sort_movies(ratings_list, sort_type)
 	if sort_type == "Movie"
 	    return self.with_ratings(ratings_list).order(rating: desc)
