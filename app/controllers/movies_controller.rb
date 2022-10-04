@@ -20,8 +20,8 @@ class MoviesController < ApplicationController
     end
     if params[:sort_movies]
         @movies = Movie.sort_movies(@ratings_to_show, "Movie")
-	@movies_classOne = "p-3 mb-2 bg-warning text-dark"
-	@movies_classTwo = "hilite"
+	@movie_classOne = "p-3 mb-2 bg-warning text-dark"
+	@movie_classTwo = "hilite"
     elsif params[:sort_release]
 	@movies = Movie.sort_movies(@ratings_to_show, "Release")
 	@release_classOne= "p-3 mb-2 bg-warning text-dark"
