@@ -11,6 +11,6 @@ class Movie < ActiveRecord::Base
     end
 
     def self.all_ratings()
-        return Movie.select(:rating).distinct
+	return Movie.distinct.pluck(:rating)
     end
 end
