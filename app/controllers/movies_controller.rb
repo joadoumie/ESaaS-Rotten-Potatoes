@@ -27,6 +27,9 @@ class MoviesController < ApplicationController
     else 
     	@movies = Movie.with_ratings(@ratings_to_show)
     end
+    if @ratings_to_show == nil
+        @ratings_to_show = [] 
+    end
   end
 
   def new
