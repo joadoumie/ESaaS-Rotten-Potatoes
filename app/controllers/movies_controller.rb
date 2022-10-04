@@ -15,15 +15,22 @@ class MoviesController < ApplicationController
     	params[:ratings].each do |key, value|
 	    @ratings_to_show.append(key)	
     	end
+	session[:ratings] = @ratings_to_show
     end
     if params[:sort_movies]
 	@ratings_to_show = params[:boxes_checked]
         @movies = Movie.sort_movies(@ratings_to_show, "Movie")
 	@movie_class= "p-3 mb-2 bg-warning text-dark hilite"
+	session[:sorting] = "Movie"
     elsif params[:sort_release]
 	@ratings_to_show = params[:boxes_checked]
 	@movies = Movie.sort_movies(@ratings_to_show, "Release")
 	@release_class= "p-3 mb-2 bg-warning text-dark hilite"
+	session[:sorting] = "Release"
+    elsif session[:sorting] == "Movie"
+        @movies = Movie.sort_movies(@ratings_to_show, "Movie")
+    elsif session[:sorting] == "Release"
+	@movies = Movie.sort_movies(@ratings_to_show, "Release")
     else 
     	@movies = Movie.with_ratings(@ratings_to_show)
     end
