@@ -13,4 +13,12 @@ class Movie < ActiveRecord::Base
     def self.all_ratings()
 	return Movie.distinct.pluck(:rating)
     end
+
+    def self.sort_movies(ratings_list, sort_type)
+	if sort_type == "Movie"
+	    return self.with_ratings(ratings_list).order(rating: desc)
+	elsif sort_type == "Release"
+	    return self.with_ratings(ratings_lsit).order(release_date: desc)
+        end
+    end
 end

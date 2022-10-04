@@ -14,7 +14,13 @@ class MoviesController < ApplicationController
 	    @ratings_to_show.append(key)	
     	end
     end
-    @movies = Movie.with_ratings(@ratings_to_show)
+    if params[:sort_movies]
+        @movies = Movie.sort_movies(@ratings_to_show, "Movie")
+    elsif params[:sort_release]
+	@movies = Movie.sort_movies(@ratings_to_show, "Release")
+    else 
+    	@movies = Movie.with_ratings(@ratings_to_show)
+    end
   end
 
   def new
