@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     @all_ratings = Movie.all_ratings
     @ratings_to_show = []
-    if params[:ratings] != nill
+    if params[:ratings] != nil
     	params[:ratings].each do |key, value|
 	    @ratings_to_show.append(key)	
     	end
