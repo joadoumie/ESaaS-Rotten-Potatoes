@@ -11,6 +11,6 @@ class Movie < ActiveRecord::Base
     end
 
     def self.all_ratings()
-        Movie.select(:rating).distinct
+        return Movie.select(:rating).distinct
     end
 end
