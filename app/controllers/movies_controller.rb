@@ -7,10 +7,8 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movie_classOne = "idk"
-    @movie_classTwo = "idk"
-    @release_classOne = "idk"
-    @release_classTwo = "idk"
+    @movie_class= "idk"
+    @release_class= "idk"
     @all_ratings = Movie.all_ratings
     @ratings_to_show = []
     if params[:ratings] != nil
@@ -20,12 +18,10 @@ class MoviesController < ApplicationController
     end
     if params[:sort_movies]
         @movies = Movie.sort_movies(@ratings_to_show, "Movie")
-	@movie_classOne = "p-3 mb-2 bg-warning text-dark"
-	@movie_classTwo = "hilite"
+	@movie_class= "p-3 mb-2 bg-warning text-dark hilite"
     elsif params[:sort_release]
 	@movies = Movie.sort_movies(@ratings_to_show, "Release")
-	@release_classOne= "p-3 mb-2 bg-warning text-dark"
-	@release_classTwo= "hilite"
+	@release_class= "p-3 mb-2 bg-warning text-dark hilite"
     else 
     	@movies = Movie.with_ratings(@ratings_to_show)
     end
