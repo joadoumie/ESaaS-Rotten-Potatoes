@@ -7,15 +7,25 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @session_needed = 0 
+    if params.length == 0
+        @ratings_to_show = session[:ratings]
+	@session_needed = 1
+	if @ratings_to_show == nil
+	    @ratings_to_show = []
+	end
+    end 
     @movie_class= "idk"
     @release_class= "idk"
     @all_ratings = Movie.all_ratings
-    @ratings_to_show = []
-    if params[:ratings] != nil
-    	params[:ratings].each do |key, value|
-	    @ratings_to_show.append(key)	
-    	end
-	session[:ratings] = @ratings_to_show
+    if @session_needed == 0
+    	@ratings_to_show = []
+    	if params[:ratings] != nil
+    	    params[:ratings].each do |key, value|
+	        @ratings_to_show.append(key)	
+    	    end
+	    session[:ratings] = @ratings_to_show
+        end
     end
     if params[:sort_movies]
 	@ratings_to_show = params[:boxes_checked]
@@ -27,6 +37,10 @@ class MoviesController < ApplicationController
 	@movies = Movie.sort_movies(@ratings_to_show, "Release")
 	@release_class= "p-3 mb-2 bg-warning text-dark hilite"
 	session[:sorting] = "Release"
+    elsif session[:sorting] == "Movie"
+	@movies = Movie.sort_movies(@ratings_to_show, "Movie")
+    elsif session[:sorting] == "Release"
+	@movies = Movie.sort_movies(@ratings_to_show, "Release")
     else 
     	@movies = Movie.with_ratings(@ratings_to_show)
     end
