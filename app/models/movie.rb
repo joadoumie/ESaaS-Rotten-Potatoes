@@ -16,7 +16,7 @@ class Movie < ActiveRecord::Base
 
     def self.sort_movies(ratings_list, sort_type)
 	if sort_type == "Movie"
-	    return self.with_ratings(ratings_list).order(rating: :desc)
+	    return self.with_ratings(ratings_list).order(rating: :asc)
 	elsif sort_type == "Release"
 	    return self.with_ratings(ratings_list).order(release_date: :desc)
         end
