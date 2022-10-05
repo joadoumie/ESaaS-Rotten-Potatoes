@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
 
   def index
     @session_needed = 0 
-    if params[:ratings] == nil && params[:sort_movies] == nil && params[:sort_release] == nil
+    if params[:ratings] == nil && params[:sort_movies] == nil && params[:sort_release] == nil && params[:commit] != "Refresh"
         @ratings_to_show = session[:ratings]
 	@session_needed = 1
 	if @ratings_to_show == nil
