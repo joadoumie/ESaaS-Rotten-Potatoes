@@ -39,10 +39,10 @@ class MoviesController < ApplicationController
 	session[:sorting] = "Release"
     elsif session[:sorting] == "Movie" && @session_needed == 1
 	@movies = Movie.sort_movies(@ratings_to_show, "Movie")
-	@release_class= "p-3 mb-2 bg-warning text-dark hilite"
+	@movie_class= "p-3 mb-2 bg-warning text-dark hilite"
     elsif session[:sorting] == "Release" && @session_needed == 1
 	@movies = Movie.sort_movies(@ratings_to_show, "Release")
-	@movie_class= "p-3 mb-2 bg-warning text-dark hilite"
+	@release_class= "p-3 mb-2 bg-warning text-dark hilite"
     else 
     	@movies = Movie.with_ratings(@ratings_to_show)
     end
